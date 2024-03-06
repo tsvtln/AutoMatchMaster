@@ -15,4 +15,3 @@ class TakeScreenshot(Locations):
         screenshot_path = os.path.join(self.workdir, screenshot_dir, screenshot_name)
         take_screenshot = pyautogui.screenshot()
         take_screenshot.save(screenshot_path)
-
