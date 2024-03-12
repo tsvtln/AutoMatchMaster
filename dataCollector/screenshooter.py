@@ -16,4 +16,3 @@ class TakeScreenshot(Locations):
         take_screenshot = pyautogui.screenshot()
         take_screenshot.save(screenshot_path)
 
-
