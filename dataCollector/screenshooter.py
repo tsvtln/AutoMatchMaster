@@ -17,3 +17,4 @@ class TakeScreenshot(Locations):
         take_screenshot.save(screenshot_path)
 
 
+
