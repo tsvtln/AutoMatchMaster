@@ -25,10 +25,3 @@ class TakeScreenshot(Locations):
 
 
 
-
-
-
-
-
-
-
