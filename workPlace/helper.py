@@ -29,8 +29,11 @@ class TakeScreenshot(Locations):
 class TkinterWorker(Locations):
     def __init__(self):
         super().__init__()
-        self.root = Tk()
         self.selected_power = ''
+        self.selected_mode = ''
+
+        # Main window init
+        self.root = Tk()
 
         # Main Window
         self.root.geometry('880x570')
@@ -59,6 +62,14 @@ class TkinterWorker(Locations):
         self.cbRobot = tk.IntVar()
         self.cbUFO = tk.IntVar()
         self.cbCobra = tk.IntVar()
+
+        # Declaration of the variables associated with the checkboxes for game mode
+        self.cbMutationLab = tk.IntVar()
+        self.cbMultiplierMadnes = tk.IntVar()
+        self.cbBombAway = tk.IntVar()
+        self.cbColorCrush = tk.IntVar()
+        self.cbColorCrystals = tk.IntVar()
+        self.cbMightyMushrooms = tk.IntVar()
 
         # Label
         Label(self.root, text='POWER UP SELECT', bg='#458B00', font=('arial', 17, 'bold')).place(x=340, y=13)
@@ -283,12 +294,50 @@ class TkinterWorker(Locations):
         # main loop start
         self.root.mainloop()
 
+    def exceptionPopUp(self, message):
+        # Create a new top-level window for the exception message
+        exception_window = tk.Toplevel()
+        exception_window.title("Error")
+
+        # Center the window on the screen
+        exception_window.geometry("300x150")
+
+        # Add a label with the exception message
+        label = tk.Label(exception_window, text=message, wraplength=250)
+        label.pack(pady=20)
+
+        # Add an "OK" button to close the exception window
+        ok_button = tk.Button(exception_window, text="OK", command=exception_window.destroy)
+        ok_button.pack(pady=10)
+
+        # Make the window modal (it will block interaction with other windows)
+        exception_window.transient()
+        exception_window.grab_set()
+        exception_window.wait_window()
+
     def getCheckboxValue(self):  # Check of the status of selected checkboxes
         checkboxes = [
-            self.cbRocket, self.cbDuck, self.cbPaint, self.cbJelly, self.cbRocketTwo,
-            self.cbHat, self.cbOwl, self.cbBroom, self.cbLazer, self.cbWand,
-            self.cbDragon, self.cbBaloons, self.cbLightning, self.cbLeprichaun,
-            self.cbBug, self.cbGeneral, self.cbTrain, self.cbSpray, self.cbRobot, self.cbUFO, self.cbCobra
+            self.cbRocket,
+            self.cbDuck,
+            self.cbPaint,
+            self.cbJelly,
+            self.cbRocketTwo,
+            self.cbHat,
+            self.cbOwl,
+            self.cbBroom,
+            self.cbLazer,
+            self.cbWand,
+            self.cbDragon,
+            self.cbBaloons,
+            self.cbLightning,
+            self.cbLeprichaun,
+            self.cbBug,
+            self.cbGeneral,
+            self.cbTrain,
+            self.cbSpray,
+            self.cbRobot,
+            self.cbUFO,
+            self.cbCobra
         ]
 
         # Check if any checkbox is checked
@@ -319,7 +368,7 @@ class TkinterWorker(Locations):
             (self.powerSpray, self.cbSpray),
             (self.powerRobot, self.cbRobot),
             (self.powerUFO, self.cbUFO),
-            (self.powerCobra, self.cbCobra)
+            (self.powerCobra, self.cbCobra),
         ]
 
         any_selected = any(var.get() for _, var in checkboxes)
@@ -344,7 +393,112 @@ class TkinterWorker(Locations):
         ]
 
         selected_checkboxes = [name for name, var in checkboxes if var.get()]
-        self.selected_power = selected_checkboxes[0]
+        try:
+            self.selected_power = selected_checkboxes[0]
+            self.open_new_window(self.root)
+        except IndexError as e:
+            m = 'You need to select a power-up!'
+            self.exceptionPopUp(m)
 
+    def btnClickNewWindow(self):
+        print('clicked')
 
-test = TkinterWorker()
+    def getCheckboxValueNewWindow(self):  # Check of the status of selected checkboxes on new window
+        checkboxes = [
+            self.cbMutationLab,
+            self.cbMultiplierMadnes,
+            self.cbBombAway,
+            self.cbColorCrush,
+            self.cbColorCrystals,
+            self.cbMightyMushrooms
+        ]
+
+        # Check if any is selected
+        checkedOrNot = any(checkboxZ.get() for checkboxZ in checkboxes)
+        return checkedOrNot
+
+    def updateCheckBoxesNewWindow(self, Mut, Mul, Bom, Col, ColC, Mig):
+        # List of all IntVar objects
+        cbx = [
+            (Mut, self.cbMutationLab),
+            (Mul, self.cbMultiplierMadnes),
+            (Bom, self.cbBombAway),
+            (Col, self.cbColorCrush),
+            (ColC, self.cbColorCrystals),
+            (Mig, self.cbMightyMushrooms)
+        ]
+
+        any_selected = any(var.get() for _, var in cbx)
+
+        return any_selected, cbx
+
+    def open_new_window(self, current_window):
+
+        # Declarations of the variables associated with checkboxes for modes
+        cbMutationLab = tk.IntVar()
+        cbMultiplierMadnes = tk.IntVar()
+        cbBombAway = tk.IntVar()
+        cbColorCrush = tk.IntVar()
+        cbColorCrystals = tk.IntVar()
+        cbMightyMushrooms = tk.IntVar()
+
+        # Close the current window
+        current_window.destroy()
+
+        # Create a new window
+        new_window = tk.Tk()
+        new_window.title('Auto Match Master')
+        new_window.geometry('880x570')
+        new_window.configure(background='#008B00')
+
+        # Labels
+        Label(new_window, text='SOLO', bg='#008B00', font=('arial', 12, 'bold')).place(x=11, y=7)
+        Label(new_window, text='MATCH RUMBLE', bg='#008B00', font=('arial', 12, 'normal')).place(x=11, y=127)
+        Label(new_window, text='TOURNAMENT', bg='#008B00', font=('arial', 12, 'normal')).place(x=11, y=257)
+        Label(new_window, text='PvP', bg='#008B00', font=('arial', 12, 'normal')).place(x=11, y=387)
+
+        # Button
+        Button(new_window, text='NEXT', bg='#F0F8FF', font=('arial', 12, 'normal'),
+               command=self.btnClickNewWindow).place(x=391, y=517)
+
+        # Checkboxes
+        MutationLab = Checkbutton(new_window, text='MutationLab', variable=cbMutationLab, bg='#F0F8FF',
+                                  font=('arial', 12, 'normal'))
+        MutationLab.place(x=11, y=27)
+
+        MultiplierMadnes = Checkbutton(new_window, text='MultiplierMadnes', variable=cbMultiplierMadnes,
+                                       bg='#F0F8FF',
+                                       font=('arial', 12, 'normal'), )
+        MultiplierMadnes.place(x=141, y=27)
+
+        BombAway = Checkbutton(new_window, text='BombAway', variable=cbBombAway, bg='#F0F8FF',
+                               font=('arial', 12, 'normal'))
+        BombAway.place(x=301, y=27)
+
+        ColorCrush = Checkbutton(new_window, text='ColorCrush', variable=cbColorCrush, bg='#F0F8FF',
+                                 font=('arial', 12, 'normal'))
+        ColorCrush.place(x=11, y=157)
+
+        ColorCrystals = Checkbutton(new_window, text='ColorCrystals', variable=cbColorCrystals, bg='#F0F8FF',
+                                    font=('arial', 12, 'normal'))
+        ColorCrystals.place(x=11, y=277)
+
+        MightyMushrooms = Checkbutton(new_window, text='MightyMushrooms', variable=cbMightyMushrooms, bg='#F0F8FF',
+                                      font=('arial', 12, 'normal'))
+        MightyMushrooms.place(x=11, y=407)
+
+        anyS, chk = self.updateCheckBoxesNewWindow(MutationLab,
+                                                   MultiplierMadnes,
+                                                   BombAway,
+                                                   ColorCrush,
+                                                   ColorCrystals,
+                                                   MightyMushrooms)
+
+        for checkbox, var in chk:
+            if var.get():
+                checkbox.config(state=NORMAL)
+            else:
+                checkbox.config(state=DISABLED if anyS else NORMAL)
+
+        # Start the Tkinter event loop for the new window
+        new_window.mainloop()

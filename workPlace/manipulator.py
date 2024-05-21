@@ -1,7 +1,7 @@
 import pyautogui
 import time
 
-from workPlace.helper import HelperFunctions
+from workPlace.helper import HelperFunctions, TkinterWorker, TakeScreenshot
 from workPlace.base_vars import Locations
 
 

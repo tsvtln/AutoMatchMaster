@@ -7,22 +7,13 @@
 # #
 from workPlace.helper import TkinterWorker
 
-# from workPlace.manipulator import Manipulator
-#
-# try:
-#     power_up = input('Your chosen powerup?\n')
-#     game_mode = input('Select GameMode\n')
-#
-#     auto_match = Manipulator(power_up, game_mode, debug=False)
-# except Exception as e:
-#     print(f"An error occurred: {e}")
-#     input('Press Enter button to continue...')
+from workPlace.manipulator import Manipulator
 
-
-
-
-
-# tkinter tester
-tk_tester = TkinterWorker()
-
-tk_tester
+try:
+    auto_match = TkinterWorker()
+except Exception as e:
+    if isinstance(e, IndexError):
+        print('You need to select a checkbox!')
+    else:
+        print(f"An error occurred: {e}")
+        input('Press Enter button to continue...')
