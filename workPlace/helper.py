@@ -29,86 +29,270 @@ class TakeScreenshot(Locations):
 class TkinterWorker(Locations):
     def __init__(self):
         super().__init__()
+        self.root = Tk()
+        self.selected_power = ''
 
-    # Check of the button selection status
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbRocket.get()
-        return checkedOrNot
+        # Main Window
+        self.root.geometry('880x570')
+        self.root.configure(background='#458B00')
+        self.root.title('Auto Match Master')
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbDuck.get()
-        return checkedOrNot
+        # Declarations of the variable associated with the checkboxes for power-up
+        self.cbRocket = tk.IntVar()
+        self.cbDuck = tk.IntVar()
+        self.cbPaint = tk.IntVar()
+        self.cbJelly = tk.IntVar()
+        self.cbRocketTwo = tk.IntVar()
+        self.cbHat = tk.IntVar()
+        self.cbOwl = tk.IntVar()
+        self.cbBroom = tk.IntVar()
+        self.cbLazer = tk.IntVar()
+        self.cbWand = tk.IntVar()
+        self.cbDragon = tk.IntVar()
+        self.cbBaloons = tk.IntVar()
+        self.cbLightning = tk.IntVar()
+        self.cbLeprichaun = tk.IntVar()
+        self.cbBug = tk.IntVar()
+        self.cbGeneral = tk.IntVar()
+        self.cbTrain = tk.IntVar()
+        self.cbSpray = tk.IntVar()
+        self.cbRobot = tk.IntVar()
+        self.cbUFO = tk.IntVar()
+        self.cbCobra = tk.IntVar()
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbPaint.get()
-        return checkedOrNot
+        # Label
+        Label(self.root, text='POWER UP SELECT', bg='#458B00', font=('arial', 17, 'bold')).place(x=340, y=13)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbJelly.get()
-        return checkedOrNot
+        # Checkboxes
+        self.powerRocket = Checkbutton(self.root, text=' ', variable=self.cbRocket, bg='#F0F8FF',
+                                       font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerRocket.place(x=20, y=53)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbRocketTwo.get()
-        return checkedOrNot
+        self.powerDuck = Checkbutton(self.root, text=' ', variable=self.cbDuck, bg='#F0F8FF',
+                                     font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerDuck.place(x=130, y=53)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbHat.get()
-        return checkedOrNot
+        self.powerPaint = Checkbutton(self.root, text=' ', variable=self.cbPaint, bg='#F0F8FF',
+                                      font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerPaint.place(x=240, y=53)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbOwl.get()
-        return checkedOrNot
+        self.powerJelly = Checkbutton(self.root, text=' ', variable=self.cbJelly, bg='#F0F8FF',
+                                      font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerJelly.place(x=350, y=53)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbBroom.get()
-        return checkedOrNot
+        self.powerRocketTwo = Checkbutton(self.root, text=' ', variable=self.cbRocketTwo, bg='#F0F8FF',
+                                          font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerRocketTwo.place(x=460, y=53)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbLazer.get()
-        return checkedOrNot
+        self.powerHat = Checkbutton(self.root, text=' ', variable=self.cbHat, bg='#F0F8FF', font=('arial', 12, 'bold'),
+                                    command=self.updateCheckboxes)
+        self.powerHat.place(x=570, y=53)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbWand.get()
-        return checkedOrNot
+        self.powerOwl = Checkbutton(self.root, text=' ', variable=self.cbOwl, bg='#F0F8FF', font=('arial', 12, 'bold'),
+                                    command=self.updateCheckboxes)
+        self.powerOwl.place(x=680, y=53)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbDragon.get()
-        return checkedOrNot
+        self.powerBroom = Checkbutton(self.root, text=' ', variable=self.cbBroom, bg='#F0F8FF',
+                                      font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerBroom.place(x=790, y=53)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbBaloons.get()
-        return checkedOrNot
+        self.powerLazer = Checkbutton(self.root, text=' ', variable=self.cbLazer, bg='#F0F8FF',
+                                      font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerLazer.place(x=20, y=123)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbLightning.get()
-        return checkedOrNot
+        self.powerWand = Checkbutton(self.root, text=' ', variable=self.cbWand, bg='#F0F8FF',
+                                     font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerWand.place(x=130, y=123)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbLeprichaun.get()
-        return checkedOrNot
+        self.powerDragon = Checkbutton(self.root, text=' ', variable=self.cbDragon, bg='#F0F8FF',
+                                       font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerDragon.place(x=240, y=123)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbBug.get()
-        return checkedOrNot
+        self.powerBaloons = Checkbutton(self.root, text=' ', variable=self.cbBaloons, bg='#F0F8FF',
+                                        font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerBaloons.place(x=350, y=123)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbGeneral.get()
-        return checkedOrNot
+        self.powerLightning = Checkbutton(self.root, text=' ', variable=self.cbLightning, bg='#F0F8FF',
+                                          font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerLightning.place(x=460, y=123)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbTrain.get()
-        return checkedOrNot
+        self.powerLeprichaun = Checkbutton(self.root, text=' ', variable=self.cbLeprichaun, bg='#F0F8FF',
+                                           font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerLeprichaun.place(x=570, y=123)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbRobot.get()
-        return checkedOrNot
+        self.powerBug = Checkbutton(self.root, text=' ', variable=self.cbBug, bg='#F0F8FF', font=('arial', 12, 'bold'),
+                                    command=self.updateCheckboxes)
+        self.powerBug.place(x=680, y=123)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbUFO.get()
-        return checkedOrNot
+        self.powerGeneral = Checkbutton(self.root, text=' ', variable=self.cbGeneral, bg='#F0F8FF',
+                                        font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerGeneral.place(x=790, y=123)
 
-    def getCheckboxValue(self):
-        checkedOrNot = self.cbCobra.get()
+        self.powerTrain = Checkbutton(self.root, text=' ', variable=self.cbTrain, bg='#F0F8FF',
+                                      font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerTrain.place(x=20, y=193)
+
+        self.powerSpray = Checkbutton(self.root, text=' ', variable=self.cbSpray, bg='#F0F8FF',
+                                      font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerSpray.place(x=130, y=193)
+
+        self.powerRobot = Checkbutton(self.root, text=' ', variable=self.cbRobot, bg='#F0F8FF',
+                                      font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerRobot.place(x=240, y=193)
+
+        self.powerUFO = Checkbutton(self.root, text=' ', variable=self.cbUFO, bg='#F0F8FF',
+                                    font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerUFO.place(x=350, y=193)
+
+        self.powerCobra = Checkbutton(self.root, text=' ', variable=self.cbCobra, bg='#F0F8FF',
+                                      font=('arial', 12, 'bold'), command=self.updateCheckboxes)
+        self.powerCobra.place(x=460, y=193)
+
+        # Images for buttons
+
+        # Rocket
+        self.rocket = Canvas(self.root, height=34, width=34)
+        picture_rocket = PhotoImage(file=self.power_rocket_pic)
+        self.rocket.create_image(37, 0, anchor=NE, image=picture_rocket)
+        self.rocket.place(x=60, y=53)
+
+        # Duck
+        self.duck = Canvas(self.root, height=34, width=34)
+        picture_duck = PhotoImage(file=self.power_duck_pic)
+        self.duck.create_image(37, 0, anchor=NE, image=picture_duck)
+        self.duck.place(x=170, y=53)
+
+        # Paint
+        self.paint = Canvas(self.root, height=34, width=34)
+        picture_paint = PhotoImage(file=self.power_paint_pic)
+        self.paint.create_image(37, 0, anchor=NE, image=picture_paint)
+        self.paint.place(x=280, y=53)
+
+        # Jelly
+        self.jelly = Canvas(self.root, height=34, width=34)
+        picture_jelly = PhotoImage(file=self.power_jelly_pic)
+        self.jelly.create_image(37, 0, anchor=NE, image=picture_jelly)
+        self.jelly.place(x=390, y=53)
+
+        # RocketTwo
+        self.rocketTwo = Canvas(self.root, height=34, width=34)
+        picture_rocketTwo = PhotoImage(file=self.power_rocket2_pic)
+        self.rocketTwo.create_image(37, 0, anchor=NE, image=picture_rocketTwo)
+        self.rocketTwo.place(x=500, y=53)
+
+        # Hat
+        self.hat = Canvas(self.root, height=34, width=34)
+        picture_hat = PhotoImage(file=self.power_hat_pic)
+        self.hat.create_image(37, 0, anchor=NE, image=picture_hat)
+        self.hat.place(x=610, y=53)
+
+        # Owl
+        self.owl = Canvas(self.root, height=34, width=34)
+        picture_owl = PhotoImage(file=self.power_owl_pic)
+        self.owl.create_image(37, 0, anchor=NE, image=picture_owl)
+        self.owl.place(x=720, y=53)
+
+        # Broom
+        self.broom = Canvas(self.root, height=34, width=34)
+        picture_broom = PhotoImage(file=self.power_broom_pic)
+        self.broom.create_image(37, 0, anchor=NE, image=picture_broom)
+        self.broom.place(x=830, y=53)
+
+        # Lazer
+        self.lazer = Canvas(self.root, height=34, width=34)
+        picture_lazer = PhotoImage(file=self.power_lazer_pic)
+        self.lazer.create_image(37, 0, anchor=NE, image=picture_lazer)
+        self.lazer.place(x=60, y=123)
+
+        # Wand
+        self.wand = Canvas(self.root, height=34, width=34)
+        picture_wand = PhotoImage(file=self.power_wand_pic)
+        self.wand.create_image(37, 0, anchor=NE, image=picture_wand)
+        self.wand.place(x=170, y=123)
+
+        # Dragon
+        self.dragon = Canvas(self.root, height=34, width=34)
+        picture_dragon = PhotoImage(file=self.power_dragon_pic)
+        self.dragon.create_image(37, 0, anchor=NE, image=picture_dragon)
+        self.dragon.place(x=280, y=123)
+
+        # Balloons
+        self.baloons = Canvas(self.root, height=34, width=34)
+        picture_baloons = PhotoImage(file=self.power_baloons_pic)
+        self.baloons.create_image(37, 0, anchor=NE, image=picture_baloons)
+        self.baloons.place(x=390, y=123)
+
+        # Lightning
+        self.lightning = Canvas(self.root, height=34, width=34)
+        picture_lightning = PhotoImage(file=self.power_lightning_pic)
+        self.lightning.create_image(37, 0, anchor=NE, image=picture_lightning)
+        self.lightning.place(x=500, y=123)
+
+        # Leprichaun
+        self.leprichaun = Canvas(self.root, height=34, width=34)
+        picture_leprichaun = PhotoImage(file=self.power_leprichaun_pic)
+        self.leprichaun.create_image(37, 0, anchor=NE, image=picture_leprichaun)
+        self.leprichaun.place(x=610, y=123)
+
+        # Bug
+        self.bug = Canvas(self.root, height=34, width=34)
+        picture_bug = PhotoImage(file=self.power_bug_pic)
+        self.bug.create_image(37, 0, anchor=NE, image=picture_bug)
+        self.bug.place(x=720, y=123)
+
+        # General
+        self.general = Canvas(self.root, height=34, width=34)
+        picture_general = PhotoImage(file=self.power_general_pic)
+        self.general.create_image(37, 0, anchor=NE, image=picture_general)
+        self.general.place(x=830, y=123)
+
+        # Train
+        self.train = Canvas(self.root, height=34, width=34)
+        picture_train = PhotoImage(file=self.power_train_pic)
+        self.train.create_image(37, 0, anchor=NE, image=picture_train)
+        self.train.place(x=60, y=193)
+
+        # Spray
+        self.spray = Canvas(self.root, height=34, width=34)
+        picture_spray = PhotoImage(file=self.power_spray_pic)
+        self.spray.create_image(37, 0, anchor=NE, image=picture_spray)
+        self.spray.place(x=170, y=193)
+
+        # Robot
+        self.robot = Canvas(self.root, height=34, width=34)
+        picture_robot = PhotoImage(file=self.power_robot_pic)
+        self.robot.create_image(37, 0, anchor=NE, image=picture_robot)
+        self.robot.place(x=280, y=193)
+
+        # UFO
+        self.UFO = Canvas(self.root, height=34, width=34)
+        picture_UFO = PhotoImage(file=self.power_ufo_pic)
+        self.UFO.create_image(37, 0, anchor=NE, image=picture_UFO)
+        self.UFO.place(x=390, y=193)
+
+        # Cobra
+        self.cobra = Canvas(self.root, height=34, width=34)
+        picture_cobra = PhotoImage(file=self.power_cobra_pic)
+        self.cobra.create_image(37, 0, anchor=NE, image=picture_cobra)
+        self.cobra.place(x=500, y=193)
+
+        # Next button
+        Button(self.root, text='Next', bg='#F0F8FF', font=('arial', 17, 'bold'),
+               command=self.btnClickFunction).place(x=400, y=503)
+
+        # main loop start
+        self.root.mainloop()
+
+    def getCheckboxValue(self):  # Check of the status of selected checkboxes
+        checkboxes = [
+            self.cbRocket, self.cbDuck, self.cbPaint, self.cbJelly, self.cbRocketTwo,
+            self.cbHat, self.cbOwl, self.cbBroom, self.cbLazer, self.cbWand,
+            self.cbDragon, self.cbBaloons, self.cbLightning, self.cbLeprichaun,
+            self.cbBug, self.cbGeneral, self.cbTrain, self.cbSpray, self.cbRobot, self.cbUFO, self.cbCobra
+        ]
+
+        # Check if any checkbox is checked
+        checkedOrNot = any(checkbox.get() for checkbox in checkboxes)
         return checkedOrNot
 
     # Function to update the state of checkboxes
@@ -132,6 +316,7 @@ class TkinterWorker(Locations):
             (self.powerBug, self.cbBug),
             (self.powerGeneral, self.cbGeneral),
             (self.powerTrain, self.cbTrain),
+            (self.powerSpray, self.cbSpray),
             (self.powerRobot, self.cbRobot),
             (self.powerUFO, self.cbUFO),
             (self.powerCobra, self.cbCobra)
@@ -147,305 +332,19 @@ class TkinterWorker(Locations):
                 # Otherwise, disable it if any checkbox is selected
                 checkbox.config(state=DISABLED if any_selected else NORMAL)
 
-    # functionality of NEXT BUTTON
+    # Functionality of NEXT BUTTON
     def btnClickFunction(self):
-        print('clicked')
+        checkboxes = [
+            ('Rocket', self.cbRocket), ('Duck', self.cbDuck), ('Paint', self.cbPaint), ('Jelly', self.cbJelly),
+            ('RocketTwo', self.cbRocketTwo), ('Hat', self.cbHat), ('Owl', self.cbOwl), ('Broom', self.cbBroom),
+            ('Lazer', self.cbLazer), ('Wand', self.cbWand), ('Dragon', self.cbDragon), ('Baloons', self.cbBaloons),
+            ('Lightning', self.cbLightning), ('Leprichaun', self.cbLeprichaun), ('Bug', self.cbBug),
+            ('General', self.cbGeneral), ('Train', self.cbTrain), ('Robot', self.cbRobot), ('UFO', self.cbUFO),
+            ('Cobra', self.cbCobra)
+        ]
 
-    root = Tk()
-    # Declarations of the variable associated with the checkboxes for power-up
-    cbRocket = tk.IntVar()
-    cbDuck = tk.IntVar()
-    cbPaint = tk.IntVar()
-    cbJelly = tk.IntVar()
-    cbRocketTwo = tk.IntVar()
-    cbHat = tk.IntVar()
-    cbOwl = tk.IntVar()
-    cbBroom = tk.IntVar()
-    cbLazer = tk.IntVar()
-    cbWand = tk.IntVar()
-    cbDragon = tk.IntVar()
-    cbBaloons = tk.IntVar()
-    cbLightning = tk.IntVar()
-    cbLeprichaun = tk.IntVar()
-    cbBug = tk.IntVar()
-    cbGeneral = tk.IntVar()
-    cbTrain = tk.IntVar()
-    cbRobot = tk.IntVar()
-    cbUFO = tk.IntVar()
-    cbCobra = tk.IntVar()
+        selected_checkboxes = [name for name, var in checkboxes if var.get()]
+        self.selected_power = selected_checkboxes[0]
 
-    # Main Window
-    root.geometry('880x570')
-    root.configure(background='#458B00')
-    root.title('Auto Match Master')
 
-    # Label
-    Label(root, text='POWER UP SELECT', bg='#458B00', font=('arial', 17, 'bold')).place(x=340, y=13)
-
-    # Checkboxes
-    powerRocket = Checkbutton(root, text=' ', variable=cbRocket, bg='#F0F8FF', font=('arial', 12, 'bold'),
-                              command=updateCheckboxes)
-    powerRocket.place(x=20, y=53)
-
-    powerDuck = Checkbutton(root, text=' ', variable=cbDuck, bg='#F0F8FF', font=('arial', 12, 'bold'),
-                            command=updateCheckboxes)
-    powerDuck.place(x=130, y=53)
-
-    # Image Rocket
-    rocket = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    rocket.create_image(37, 0, anchor=NE, image=picture_file)
-    rocket.place(x=60, y=53)
-
-    # This is the section of code which creates a checkbox
-
-    # First, we create a canvas to put the picture on
-    duck = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    duck.create_image(37, 0, anchor=NE, image=picture_file)
-    duck.place(x=170, y=53)
-
-    # This is the section of code which creates a checkbox
-    powerPaint = Checkbutton(root, text=' ', variable=cbPaint, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerPaint.place(x=240, y=53)
-
-    # First, we create a canvas to put the picture on
-    paint = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    paint.create_image(37, 0, anchor=NE, image=picture_file)
-    paint.place(x=280, y=53)
-
-    # This is the section of code which creates a checkbox
-    powerJelly = Checkbutton(root, text=' ', variable=cbJelly, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerJelly.place(x=350, y=53)
-
-    # First, we create a canvas to put the picture on
-    jelly = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    jelly.create_image(37, 0, anchor=NE, image=picture_file)
-    jelly.place(x=390, y=53)
-
-    # This is the section of code which creates a checkbox
-    powerRocketTwo = Checkbutton(root, text=' ', variable=cbRocketTwo, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerRocketTwo.place(x=460, y=53)
-
-    # First, we create a canvas to put the picture on
-    rocketTwo = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    rocketTwo.create_image(37, 0, anchor=NE, image=picture_file)
-    rocketTwo.place(x=500, y=53)
-
-    # This is the section of code which creates a checkbox
-    powerHat = Checkbutton(root, text=' ', variable=cbHat, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerHat.place(x=570, y=53)
-
-    # First, we create a canvas to put the picture on
-    hat = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    hat.create_image(37, 0, anchor=NE, image=picture_file)
-    hat.place(x=610, y=53)
-
-    # This is the section of code which creates a checkbox
-    powerOwl = Checkbutton(root, text=' ', variable=cbOwl, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerOwl.place(x=680, y=53)
-
-    # First, we create a canvas to put the picture on
-    owl = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    owl.create_image(37, 0, anchor=NE, image=picture_file)
-    owl.place(x=720, y=53)
-
-    # This is the section of code which creates a checkbox
-    powerBroom = Checkbutton(root, text=' ', variable=cbBroom, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerBroom.place(x=790, y=53)
-
-    # First, we create a canvas to put the picture on
-    broom = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    broom.create_image(37, 0, anchor=NE, image=picture_file)
-    broom.place(x=830, y=53)
-
-    # This is the section of code which creates a checkbox
-    powerLazer = Checkbutton(root, text=' ', variable=cbLazer, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerLazer.place(x=20, y=123)
-
-    # First, we create a canvas to put the picture on
-    lazer = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    lazer.create_image(37, 0, anchor=NE, image=picture_file)
-    lazer.place(x=60, y=123)
-
-    # This is the section of code which creates a checkbox
-    powerWand = Checkbutton(root, text=' ', variable=cbWand, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerWand.place(x=130, y=123)
-
-    # First, we create a canvas to put the picture on
-    wand = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    wand.create_image(37, 0, anchor=NE, image=picture_file)
-    wand.place(x=170, y=123)
-
-    # This is the section of code which creates a checkbox
-    powerDragon = Checkbutton(root, text=' ', variable=cbDragon, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerDragon.place(x=240, y=123)
-
-    # First, we create a canvas to put the picture on
-    dragon = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    dragon.create_image(37, 0, anchor=NE, image=picture_file)
-    dragon.place(x=280, y=123)
-
-    # This is the section of code which creates a checkbox
-    powerBaloons = Checkbutton(root, text=' ', variable=cbBaloons, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerBaloons.place(x=350, y=123)
-
-    # First, we create a canvas to put the picture on
-    baloons = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    baloons.create_image(37, 0, anchor=NE, image=picture_file)
-    baloons.place(x=390, y=123)
-
-    # This is the section of code which creates a checkbox
-    powerLightning = Checkbutton(root, text=' ', variable=cbLightning, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerLightning.place(x=460, y=123)
-
-    # First, we create a canvas to put the picture on
-    lightning = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    lightning.create_image(37, 0, anchor=NE, image=picture_file)
-    lightning.place(x=500, y=123)
-
-    # This is the section of code which creates a checkbox
-    powerLeprichaun = Checkbutton(root, text=' ', variable=cbLeprichaun, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerLeprichaun.place(x=570, y=123)
-
-    # First, we create a canvas to put the picture on
-    leprichaun = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    leprichaun.create_image(37, 0, anchor=NE, image=picture_file)
-    leprichaun.place(x=610, y=123)
-
-    # This is the section of code which creates a checkbox
-    powerBug = Checkbutton(root, text=' ', variable=cbBug, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerBug.place(x=680, y=123)
-
-    # First, we create a canvas to put the picture on
-    bug = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    bug.create_image(37, 0, anchor=NE, image=picture_file)
-    bug.place(x=720, y=123)
-
-    # This is the section of code which creates a checkbox
-    powerGeneral = Checkbutton(root, text=' ', variable=cbGeneral, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerGeneral.place(x=790, y=123)
-
-    # First, we create a canvas to put the picture on
-    general = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    general.create_image(37, 0, anchor=NE, image=picture_file)
-    general.place(x=830, y=123)
-
-    # This is the section of code which creates a checkbox
-    powerTrain = Checkbutton(root, text=' ', variable=cbTrain, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerTrain.place(x=20, y=193)
-
-    # First, we create a canvas to put the picture on
-    train = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    train.create_image(37, 0, anchor=NE, image=picture_file)
-    train.place(x=60, y=193)
-
-    # This is the section of code which creates a checkbox
-    powerRobot = Checkbutton(root, text=' ', variable=cbRobot, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerRobot.place(x=130, y=193)
-
-    # First, we create a canvas to put the picture on
-    robot = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    robot.create_image(37, 0, anchor=NE, image=picture_file)
-    robot.place(x=170, y=193)
-
-    # This is the section of code which creates a checkbox
-    powerUFO = Checkbutton(root, text=' ', variable=cbUFO, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerUFO.place(x=240, y=193)
-
-    # First, we create a canvas to put the picture on
-    UFO = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    UFO.create_image(37, 0, anchor=NE, image=picture_file)
-    UFO.place(x=280, y=193)
-
-    # This is the section of code which creates a checkbox
-    powerCobra = Checkbutton(root, text=' ', variable=cbCobra, bg='#F0F8FF', font=('arial', 12, 'bold'))
-    powerCobra.place(x=350, y=193)
-
-    # First, we create a canvas to put the picture on
-    cobra = Canvas(root, height=37, width=37)
-    # Then, we actually create the image file to use (it has to be a *.gif)
-    picture_file = PhotoImage(
-        file='')  # <-- you will have to copy-paste the filepath here, for example 'C:\Desktop\pic.gif'
-    # Finally, we create the image on the canvas and then place it onto the main window
-    cobra.create_image(37, 0, anchor=NE, image=picture_file)
-    cobra.place(x=390, y=193)
-
-    # This is the section of code which creates a button
-    Button(root, text='Next', bg='#F0F8FF', font=('arial', 17, 'bold'), command=btnClickFunction).place(x=400, y=503)
-
-    root.mainloop()
+test = TkinterWorker()
