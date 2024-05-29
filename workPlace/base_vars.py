@@ -30,6 +30,12 @@ class Locations:
         self.power_ufo_pic = os.path.join(self.workdir, 'etc', '020.png')
         self.power_cobra_pic = os.path.join(self.workdir, 'etc', '021.png')
 
+        # state_dump_dir
+        self.state_dump_dir = os.path.join(self.workdir, 'etc', 'state_dumps')
+
+        # comp dir
+        self.compare_dir = os.path.join(self.workdir, 'etc', 'comp')
+
     @staticmethod
     def workdir():
         if getattr(sys, 'frozen', False):
