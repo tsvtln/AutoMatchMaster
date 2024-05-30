@@ -18,10 +18,8 @@
 #     self.DrillingDown_pvp = PVP_DrillingDown
 
 import os
-import sys
 import pyautogui
 import tkinter as tk
-from tkinter import ttk
 from tkinter import *
 
 from workPlace.base_vars import Locations
@@ -469,7 +467,6 @@ class TkinterWorker(Locations):
         self.selected_mode.append(game_mode)
 
     def open_new_window(self, current_window):
-
         # Close the current window
         current_window.destroy()
 
