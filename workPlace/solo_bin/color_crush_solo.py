@@ -22,7 +22,6 @@ class ColorCrushSolo(Locations):
             value = 7
         self._power_up_charge = value
 
-
     def tile_scanner(self):
         # Regions of boxes with tiles
         # line - row x 7
