@@ -7,13 +7,6 @@
 #
 
 
-
-
-
-
-
-
-
 ########################
 ########################
 from workPlace.helper import TkinterWorker
