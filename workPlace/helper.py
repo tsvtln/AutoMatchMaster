@@ -6,6 +6,9 @@
 #     self.ColorCrystals_solo = SOLO_ColorCrystals
 #     self.ColorCrush_solo = SOLO_ColorCrush
 #     self.Rainbow_solo = SOLO_Rainbow
+#     self.CrazyColumns_solo = SOLO_CrazyColumns
+#     self.SuperSized_solo = SOLO_SuperSized
+#     self.BlowEmUp_solo = SOLO_BlowEmUp
 #
 #     self.ColorCrush_mr = MatchRumble_ColorCrush
 #     self.DrillingDown_mr = MatchRumble_DrillingDown
