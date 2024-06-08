@@ -7,13 +7,6 @@ runner.take_screenshot()
 
 
 
-
-
-
-
-
-
-
 ########################
 ########################
 # from workPlace.helper import TkinterWorker
