@@ -1,10 +1,25 @@
+import time
+
+start_time = time.time()
+
 # # runner
-from workPlace.helper import TakeScreenshot
-runner = TakeScreenshot()
+# from workPlace.helper import TakeScreenshot
+# runner = TakeScreenshot()
+#
+# runner.take_screenshot()
+# # #
+#
+from workPlace.solo_bin.color_crush_solo import ColorCrushSolo
 
-runner.take_screenshot()
-# #
+# Initialize ColorCrushSolo instance
+tileScan = ColorCrushSolo('powerUp')
 
+# Perform tile scanning and analysis
+# tileScan.tile_scanner()
+# tileScan.tile_analyzer()
+#
+# # Generate the board matrix
+# tileScan.matrix_maker()
 
 
 ########################
@@ -21,3 +36,8 @@ runner.take_screenshot()
 #     else:
 #         print(f"An error occurred: {e}")
 #         input('Press Enter button to continue...')
+
+
+end_time = time.time()
+execution_time = end_time - start_time
+print(round(execution_time, 2))

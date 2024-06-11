@@ -19,6 +19,8 @@
 #     self.MightyMushrooms_pvp = PVP_MightyMushrooms
 #     self.MovesMulti_pvp = PVP_MovesMulti
 #     self.DrillingDown_pvp = PVP_DrillingDown
+#     self.ColorCrush_pvp = PVP_ColorCrush
+#     self.Classic_pvp = PVP_Classic
 
 import os
 import pyautogui
@@ -102,6 +104,8 @@ class TkinterWorker(Locations):
         self.cbMightyMushrooms_pvp = tk.IntVar()
         self.cbMovesMulti_pvp = tk.IntVar()
         self.cbDrillingDown_pvp = tk.IntVar()
+        self.cbColorCrush_pvp = tk.IntVar()
+        self.cbClassic_pvp = tk.IntVar()
 
         # new window vars
         self.MutationLab_solo = ''
@@ -121,6 +125,8 @@ class TkinterWorker(Locations):
         self.MightyMushrooms_pvp = ''
         self.MovesMulti_pvp = ''
         self.DrillingDown_pvp = ''
+        self.ColorCrush_pvp = ''
+        self.Classic_pvp = ''
 
         self.new_window = ''
 
@@ -565,18 +571,32 @@ class TkinterWorker(Locations):
         self.MightyMushrooms_pvp.place(x=11, y=407)
         #
         self.MovesMulti_pvp = Checkbutton(self.new_window, text='Moves Multiplier',
-                                               variable=self.cbMovesMulti_pvp,
-                                               bg='#F0F8FF',
-                                               font=('arial', 12, 'normal'),
-                                               command=lambda: self.getGameModeSelection('PVP_MovesMulti'))
+                                          variable=self.cbMovesMulti_pvp,
+                                          bg='#F0F8FF',
+                                          font=('arial', 12, 'normal'),
+                                          command=lambda: self.getGameModeSelection('PVP_MovesMulti'))
         self.MovesMulti_pvp.place(x=180, y=407)
         #
         self.DrillingDown_pvp = Checkbutton(self.new_window, text='Drilling Down',
-                                               variable=self.cbDrillingDown_pvp,
-                                               bg='#F0F8FF',
-                                               font=('arial', 12, 'normal'),
-                                               command=lambda: self.getGameModeSelection('PVP_DrillingDown'))
+                                            variable=self.cbDrillingDown_pvp,
+                                            bg='#F0F8FF',
+                                            font=('arial', 12, 'normal'),
+                                            command=lambda: self.getGameModeSelection('PVP_DrillingDown'))
         self.DrillingDown_pvp.place(x=332, y=407)
+        #
+        self.ColorCrush_pvp = Checkbutton(self.new_window, text='Color Crush',
+                                          variable=self.cbColorCrush_pvp,
+                                          bg='#F0F8FF',
+                                          font=('arial', 12, 'normal'),
+                                          command=lambda: self.getGameModeSelection('PVP_ColorCrush'))
+        self.ColorCrush_pvp.place(x=464, y=407)
+        #
+        self.Classic_pvp = Checkbutton(self.new_window, text='Classic',
+                                       variable=self.cbClassic_pvp,
+                                       bg='#F0F8FF',
+                                       font=('arial', 12, 'normal'),
+                                       command=lambda: self.getGameModeSelection('PVP_Classic'))
+        self.Classic_pvp.place(x=586, y=407)
 
         # Start the Tkinter event loop for the new window
         self.new_window.mainloop()

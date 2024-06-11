@@ -5,8 +5,10 @@ import sys
 class Locations:
     def __init__(self):
         self.workdir = Locations.workdir()
-        # current_state
-        self.screenshot_state_path = os.path.join(self.workdir, 'collector', 'current_state.png')
+        # paths
+        self.screenshot_state_path = os.path.join(self.workdir, 'collector', 'current_state.png')  # current state
+        self.tiles_state_path = os.path.join(self.workdir, 'collector', 'tiles')  # extracted tiles
+        self.comp_tiles_path = os.path.join(self.workdir, 'etc', 'comp', 'comp_tiles')  # tiles to compare to
         # tkinter power-ups vars:
         self.power_rocket_pic = os.path.join(self.workdir, 'etc', '001.png')
         self.power_duck_pic = os.path.join(self.workdir, 'etc', '002.png')

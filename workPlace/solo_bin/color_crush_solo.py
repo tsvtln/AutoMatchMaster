@@ -1,7 +1,12 @@
+import os
+
 from workPlace.base_vars import Locations
 
 import numpy as np
 from PIL import Image
+
+from workPlace.helper import TakeScreenshot
+from skimage.metrics import structural_similarity as ssim
 
 
 class ColorCrushSolo(Locations):
@@ -10,7 +15,11 @@ class ColorCrushSolo(Locations):
         self.power_up = power_up
         self._power_up_charge = None
         self.turns_left = 6
+        self.screenshooter = TakeScreenshot()
         self.state_image = Image.open(self.screenshot_state_path)
+        self.board_matrix = []
+        self.tiles = {}
+        self.worker()
 
     @property
     def powerUpChargeSetter(self):
@@ -35,13 +44,13 @@ class ColorCrushSolo(Locations):
             (1064, 430, 1136, 502),     # 1 6
             (1143, 430, 1215, 502),     # 1 7
             # line 2
-            (671, 509, 743, 583),       # 2 1
-            (750, 509, 822, 583),       # 2 2
-            (829, 509, 901, 583),       # 2 3
-            (907, 509, 979, 583),       # 2 4
-            (986, 509, 1058, 583),      # 2 5
-            (1064, 509, 1136, 583),     # 2 6
-            (1143, 509, 1215, 583),     # 2 7
+            (671, 509, 743, 581),       # 2 1
+            (750, 509, 822, 581),       # 2 2
+            (829, 509, 901, 581),       # 2 3
+            (907, 509, 979, 581),       # 2 4
+            (986, 509, 1058, 581),      # 2 5
+            (1064, 509, 1136, 581),     # 2 6
+            (1143, 509, 1215, 581),     # 2 7
             # line 3
             (671, 588, 743, 660),       # 3 1
             (750, 588, 822, 660),       # 3 2
@@ -84,7 +93,73 @@ class ColorCrushSolo(Locations):
             (1143, 902, 1215, 974)  # 7 7
         ]
 
+        # extract tiles
+        for i, region in enumerate(tile_regions):
+            tile_region_crop = self.state_image.crop(region)
+            tile_save_path = os.path.join(self.tiles_state_path, f'tile_{i + 1}.png')
+            tile_region_crop.save(tile_save_path)
 
+    def tile_analyzer(self):
+        if not self.tiles:
+            self.tiles = {f'tile_{r}_{c}': '' for r in range(1, 8) for c in range(1, 8)}
+        else:
+            self.tiles.clear()
+            self.tiles = {f'tile_{r}_{c}': '' for r in range(1, 8) for c in range(1, 8)}
+        for tile_num in range(1, 50):
+            tile_state_image = Image.open(os.path.join(self.tiles_state_path, f'tile_{tile_num}.png'))
+            tile_state_image_np = np.array(tile_state_image)
+
+            # find tile color
+            for filename in os.listdir(self.comp_tiles_path):
+                comp_image = Image.open(os.path.join(self.comp_tiles_path, filename))
+                comp_image_np = np.array(comp_image)
+
+                # calculate SSI
+                smaller_side = min(tile_state_image_np.shape[0], tile_state_image_np.shape[1],
+                                   comp_image_np.shape[0], comp_image_np.shape[1])
+                win_size = min(smaller_side, 3)
+                similarity_index, _ = ssim(tile_state_image_np, comp_image_np, win_size=win_size, full=True)
+                similarity_index = float(f"{similarity_index:.2f}")
+
+                if similarity_index > 0.8:
+                    filename = filename[:-6]
+                    r = (tile_num - 1) // 7 + 1
+                    c = (tile_num - 1) % 7 + 1
+                    self.tiles[f'tile_{r}_{c}'] = filename
+                    break
+        # for k, v in self.tiles.items():
+        #     print(f'Key: {k}\nValue: {v}\n\n')
+
+    def matrix_maker(self):
+        if self.board_matrix:
+            self.board_matrix.clear()
+        if not self.board_matrix:
+            self.board_matrix = [['' for _ in range(7)] for _ in range(7)]
+        for k, v in self.tiles.items():
+            _, row, col = k.split('_')
+            row, col = int(row) - 1, int(col) - 1
+            if v == 'blue':
+                self.board_matrix[row][col] = 'B'
+            elif v == 'green':
+                self.board_matrix[row][col] = 'G'
+            elif v == 'orange':
+                self.board_matrix[row][col] = 'O'
+            elif v == 'purple':
+                self.board_matrix[row][col] = 'P'
+            elif v == 'red':
+                self.board_matrix[row][col] = 'R'
+            elif v == 'yellow':
+                self.board_matrix[row][col] = 'Y'
+            else:
+                print('M4TR1X 3RR0R')
+        for line in self.board_matrix:
+            print(line)
+
+    def worker(self):
+        # self.screenshooter.take_screenshot()
+        self.tile_scanner()
+        self.tile_analyzer()
+        self.matrix_maker()
 
 
 

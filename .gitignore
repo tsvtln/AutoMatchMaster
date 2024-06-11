@@ -154,3 +154,6 @@ collector/bkp_modes
 collector/bkp_modes/*
 collector/current_state.png
 blank.py
+kc.py
+kc.py
+kc.py
