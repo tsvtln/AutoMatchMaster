@@ -1,0 +1,33 @@
+move right checks:
+
+3ples:
+* c+2 and c+3 == color (2 right)
+- r-1, c+1 / r+1, c+1 == color (above + bellow)
+- r-1, c+1 / r-2, c+1 == color (2 above)
+- r+1, c+1 / r+2, c+1 == color (2 bellow)
+
+quad:
+- r-1, c+1 / r+1, c+1 / r+2, c+1 == color (1 above, 2 bellow)
+- r+1, c+1 / r-1, c+1 / r-2, c+1 == color (1 bellow, 2 above)
+
+penta:
+- r-1, c+1 / r-2, c+1 / r+1, c+1 / r+2, c+1 (2 above, 2 bellow)
+- r-1, c+1 / r-2, c+1 / r, c+2 / r, c+3 (2 above, 2 rigth side)
+- r+1, c+1 / r+2, c+1 / r, c+2 / r, c+3 (2 bellow, 2 right side)
+
+
+
+move left checks:
+3ples:
+- c-2, c-3 == color (2 left)
+- r-1, c-1 / r+1, c-1 == color (above and bellow)
+- r-1, c-1 / r-2, c-1 == color (2 above)
+- r+1, c-1 / r+2, c-1 == color (2 bellow)
+
+quad:
+- r-1, c-1 / r+1, c-1 / r+2, c-1 == color (1 above, 2 bellow)
+penta:
+- r-1, c-1 / r-2, c-1 / r+1, c-1/ r+2, c-1 (2above, 2bellow)
+- r-1, c-1/ r-2, c-1 / r, c-2 / r, c-3 (2above, 2 left side)
+- r+1, c-1 / r+2, c-1 / r, c-2 / r, c-3 (2 bellow, 2 right side)
+
