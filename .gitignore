@@ -155,3 +155,4 @@ collector/bkp_modes/*
 collector/current_state.png
 kc.py
 unit_tests.py
+blank.py
