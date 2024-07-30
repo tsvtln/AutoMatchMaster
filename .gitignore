@@ -153,6 +153,5 @@ cython_debug/
 collector/bkp_modes
 collector/bkp_modes/*
 collector/current_state.png
-blank.py
 kc.py
 unit_tests.py
