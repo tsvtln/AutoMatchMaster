@@ -1,0 +1,76 @@
+####
+move right checks:
+####
+
+3ples:
+* r, c+2/ r, c+3 == color (2 right)
+- r-1, c+1 / r+1, c+1 == color (above + bellow)
+- r-1, c+1 / r-2, c+1 == color (2 above)
+- r+1, c+1 / r+2, c+1 == color (2 bellow)
+
+quad:
+- r-1, c+1 / r+1, c+1 / r+2, c+1 == color (1 above, 2 bellow)
+- r+1, c+1 / r-1, c+1 / r-2, c+1 == color (1 bellow, 2 above)
+
+penta:
+- r-1, c+1 / r-2, c+1 / r+1, c+1 / r+2, c+1 (2 above, 2 bellow)
+- r-1, c+1 / r-2, c+1 / r, c+2 / r, c+3 (2 above, 2 rigth side)
+- r+1, c+1 / r+2, c+1 / r, c+2 / r, c+3 (2 bellow, 2 right side)
+
+
+####
+move left checks:
+####
+
+3ples:
+- r, c-2 / r, c-3 == color (2 left)
+- r-1, c-1 / r+1, c-1 == color (above and bellow)
+- r-1, c-1 / r-2, c-1 == color (2 above)
+- r+1, c-1 / r+2, c-1 == color (2 bellow)
+
+quad:
+- r-1, c-1 / r+1, c-1 / r+2, c-1 == color (1 above, 2 bellow)
+- r+1, c-1 / r-1, c-1 / r-2, c-1 == color (1 bellow, 2 above)
+
+penta:
+- r-1, c-1 / r-2, c-1 / r+1, c-1/ r+2, c-1 (2above, 2bellow)
+- r-1, c-1/ r-2, c-1 / r, c-2 / r, c-3 (2above, 2 left side)
+- r+1, c-1 / r+2, c-1 / r, c-2 / r, c-3 (2 bellow, 2 right side)
+
+
+####
+move down checks:
+####
+
+3ples:
+- r+2, c / r+3, c == color (2 down)
+- r+1, c+1 / r+1, c+2 == color (2 right)
+- r+1, c-1 / r+1, c-2 == color (2 left)
+
+quad:
+- r+1, c-1 / r+1, c+1 / r+1, c+2 (1left, 2right)
+- r+1, c-1 / r+1, c-2 / r+1, c+1 (2left, 1 right)
+
+penta:
+- r+1, c-1 / r+1, c-2 / r+1, c+1 / r+1, c+2 (2left, 2right)
+- r+2, c / r+3, c / r+1, c+1 / r+1, c+2 (2down, 2 right)
+- r+2, c / r+3, c / r+1, c-1 / r+1, c-2 (2down, 2left)
+
+
+####
+move up checks:
+####
+
+3ples:
+- r-2, c / r-3, c == color (2up)
+- r-1, c+1 / r-1, c+2 == color (2 right)
+- r-1, c-1 / r-1, c-2 == color (2left)
+
+quad:
+- r-1, c-1 / r-1, c+1 / r-1, c+2 (1left, 2right)
+- r-1, c-1 / r-1, c-2 / r-1, c+1 (2left, 1right)
+
+penta:
+- r-1, c-1 / r-1, c-2 / r-1, c+1 / r-1, c+2 (2left, 2right)
+- r-2, c / r-3, c / r-1, c+1 / r-1, c+2 (2up, 2right)
+- r-2, c / r-3, c / r-1, c-1 / r-1, c-2 (2up, 2left)
