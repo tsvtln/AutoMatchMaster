@@ -369,6 +369,11 @@ for row in range(0, 7):
                 penta = True
                 matches_penta['match_down'][color_name].append((row, col))
 
+        # MOVE UP CHECKS
+
+        # triple - 2 up
+        
+
 print('triple')
 print(matches_triple)
 print('\n\n\n')
