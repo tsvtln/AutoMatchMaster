@@ -116,11 +116,11 @@ matches_penta = {
 }
 
 matrix = [
-    ['G', 'R', 'Y', 'G', 'R', 'P', 'B'],
-    ['Y', 'B', 'Y', 'G', 'B', 'B', 'Y'],
-    ['G', 'P', 'B', 'B', 'R', 'R', 'B'],
+    ['G', 'R', 'Y', 'B', 'R', 'P', 'B'],
+    ['Y', 'B', 'Y', 'G', 'G', 'B', 'Y'],
+    ['G', 'P', 'B', 'G', 'R', 'R', 'B'],
     ['G', 'Y', 'Y', 'O', 'B', 'P', 'R'],
-    ['B', 'O', 'R', 'B', 'B', 'P', 'R'],
+    ['B', 'O', 'R', 'G', 'B', 'P', 'R'],
     ['R', 'G', 'O', 'Y', 'G', 'Y', 'P'],
     ['Y', 'O', 'G', 'B', 'G', 'P', 'R']
 ]
@@ -147,19 +147,19 @@ for row in range(0, 7):
                     and matrix[row + 1][col + 1] == color):
                 matches_triple['match_right'][color_name].append((row, col))
         # 3ple - 2 above
-        if row not in [0, 1, 2] and col != 6:
+        if row not in [0, 1] and col != 6:
             if (matrix[row - 1][col + 1] == color and
                     matrix[row - 2][col + 1] == color):
                 matches_triple['match_right'][color_name].append((row, col))
         # 3ple - 2 bellow
-        if row not in [4, 5, 6] and col != 6:
-            if (matrix[row+1][col+1] == color and
-                    matrix[row+2][col+1] == color):
+        if row not in [5, 6] and col != 6:
+            if (matrix[row + 1][col + 1] == color and
+                    matrix[row + 2][col + 1] == color):
                 matches_triple['match_right'][color_name].append((row, col))
 
         # quad - 1 above, 2 bellow
         if row not in [0, 5, 6] and col != 6:
-            if (matrix[row - 1][col +1] == color and
+            if (matrix[row - 1][col + 1] == color and
                     matrix[row + 1][col + 1] == color and
                     matrix[row + 2][col + 1] == color):
                 quad = True
@@ -177,18 +177,129 @@ for row in range(0, 7):
             if (matrix[row - 1][col + 1] == color and
                     matrix[row - 2][col + 1] == color and
                     matrix[row + 1][col + 1] == color and
-                    matrix[row + 2][col + 2] == color):
+                    matrix[row + 2][col + 1] == color):
                 penta = True
                 matches_penta['match_right'][color_name].append((row, col))
+
+        # penta - 2 above, 2 right
+        if row not in [0, 1] and col not in [6, 5, 4]:
+            if (
+                    matrix[row - 1][col + 1] == color and
+                    matrix[row - 2][col + 1] == color and
+                    matrix[row][col + 2] == color and
+                    matrix[row][col + 3] == color
+            ):
+                penta = True
+                matches_penta['match_right'][color_name].append((row, col))
+
+        # penta - 2 bellow, 2 right
+        if row not in [6, 5] and col not in [6, 5, 4]:
+            if (
+                    matrix[row + 1][col + 1] == color and
+                    matrix[row + 2][col + 1] == color and
+                    matrix[row][col + 2] == color and
+                    matrix[row][col + 3] == color
+            ):
+                penta = True
+                matches_penta['match_right'][color_name].append((row, col))
+
+        # CHECK MOVE LEFT
+
+        # triple 2 left
+        if col not in [0, 1, 2]:
+            if (
+                    matrix[row][col - 2] == color and
+                    matrix[row][col - 3] == color
+            ):
+                matches_triple['match_left'][color_name].append((row, col))
+
+        # triple above and below
+        if row not in [0, 6] and col != 0:
+            if (
+                    matrix[row - 1][col - 1] == color and
+                    matrix[row + 1][col - 1] == color
+            ):
+                matches_triple['match_left'][color_name].append((row, col))
+
+        # triple - 2 above
+        if row not in [0, 1] and col != 0:
+            if (
+                    matrix[row - 1][col - 1] == color and
+                    matrix[row - 2][col - 1] == color
+            ):
+                matches_triple['match_left'][color_name].append((row, col))
+
+        # triple - 2 bellow
+        if row not in [6, 5] and col != 0:
+            if (
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row + 2][col - 1] == color
+            ):
+                matches_triple['match_left'][color_name].append((row, col))
+
+        # quad - 1 above, 2 bellow
+        if row not in [0, 6, 5] and col != 0:
+            if (
+                    matrix[row - 1][col - 1] == color and
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row + 2][col - 1] == color
+            ):
+                quad = True
+                matches_quad['match_left'][color_name].append((row, col))
+
+        # quad - 1 bellow, 2 above
+        if row not in [6, 0, 1] and col != 0:
+            if (
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row - 1][col - 1] == color and
+                    matrix[row - 2][col - 1] == color
+            ):
+                quad = True
+                matches_quad['match_left'][color_name].append((row, col))
+
+        # penta - 2 above, 2 bellow
+        if row not in [0, 1, 6, 5] and col != 0:
+            if (
+                    matrix[row - 1][col - 1] == color and
+                    matrix[row - 2][col - 1] == color and
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row + 2][col - 1] == color
+            ):
+                penta = True
+                matches_penta['match_left'][color_name].append((row, col))
+
+        # penta - 2 above, 2 left
+        if row not in [0, 1] and col not in [0, 1, 2]:
+            if (
+                    matrix[row - 1][col - 1] == color and
+                    matrix[row - 2][col - 1] == color and
+                    matrix[row][col - 2] == color and
+                    matrix[row][col - 3] == color
+            ):
+                penta = True
+                matches_penta['match_left'][color_name].append((row, col))
+
+        # penta - 2 bellow, 2 right
+        if row not in [6, 5] and col not in [0, 1, 2]:
+            if (
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row + 2][col - 1] == color and
+                    matrix[row][col - 2] == color and
+                    matrix[row][col - 3] == color
+            ):
+                penta = True
+                matches_penta['match_left'][color_name].append((row, col))
 
 
 print('triple')
 print(matches_triple)
 print('\n\n\n')
 print('quad')
+print(quad)
 print(matches_quad)
 print('\n\n\n')
 print('penta')
+print(penta)
 print(matches_penta)
 
 # print('3ple')
