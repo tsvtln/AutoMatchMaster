@@ -290,6 +290,84 @@ for row in range(0, 7):
                 penta = True
                 matches_penta['match_left'][color_name].append((row, col))
 
+        # Move Down Checks
+
+        # triple - 2 down
+        if row not in [6, 5, 4]:
+            if (
+                    matrix[row + 2][col] == color and
+                    matrix[row + 3][col] == color
+            ):
+                matches_triple['match_down'][color_name].append((row, col))
+
+        # triple - 2 right
+        if row != 6 and col not in [6, 5]:
+            if (
+                    matrix[row + 1][col + 1] == color and
+                    matrix[row + 1][col + 2] == color
+            ):
+                matches_triple['match_down'][color_name].append((row, col))
+
+        # triple - 2 left
+        if row != 6 and col not in [0, 1]:
+            if (
+                    matrix[row + 1][col + 1] == color and
+                    matrix[row + 1][col + 2] == color
+            ):
+                matches_triple['match_down'][color_name].append((row, col))
+
+        # quad - 1 left, 2 right
+        if row != 6 and col not in [0, 6, 5]:
+            if (
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row + 1][col + 1] == color and
+                    matrix[row + 1][col + 2] == color
+            ):
+                quad = True
+                matches_quad['match_down'][color_name].append((row, col))
+
+        # quad - 2 left, 1 right
+        if row != 6 and col not in [0, 1, 6]:
+            if (
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row + 1][col - 2] == color and
+                    matrix[row + 1][col + 1] == color
+            ):
+                quad = True
+                matches_quad['match_down'][color_name].append((row, col))
+
+        # penta - 2 left, 2 right
+        if row != 6 and col not in [0, 1, 6, 5]:
+            if (
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row + 1][col - 2] == color and
+                    matrix[row + 1][col + 1] == color and
+                    matrix[row + 1][col + 2] == color
+            ):
+                penta = True
+                matches_penta['match_down'][color_name].append((row, col))
+
+        # penta - 2 down, 2 right
+        if row not in [6, 5, 3] and col not in [6, 5]:
+            if (
+                    matrix[row + 2][col] == color and
+                    matrix[row + 3][col] == color and
+                    matrix[row + 1][col + 1] == color and
+                    matrix[row + 1][col + 2] == color
+            ):
+                penta = True
+                matches_penta['match_down'][color_name].append((row, col))
+
+        # penta - 2 down, 2 left
+        if row not in [6, 5, 4] and col not in [0, 1]:
+            if (
+                    matrix[row + 2][col] == color and
+                    matrix[row + 3][col] == color and
+                    matrix[row + 1][col - 1] == color and
+                    matrix[row + 1][col - 2] == color
+            ):
+                penta = True
+                matches_penta['match_down'][color_name].append((row, col))
 
 print('triple')
 print(matches_triple)
