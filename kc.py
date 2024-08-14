@@ -372,7 +372,20 @@ for row in range(0, 7):
         # MOVE UP CHECKS
 
         # triple - 2 up
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 print('triple')
 print(matches_triple)
