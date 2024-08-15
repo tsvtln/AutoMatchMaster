@@ -123,6 +123,8 @@ class MatrixWalker:
         self.m3x_walker()
 
     def m3x_walker(self):
+        self.quad = False
+        self.penta = False
         for row in range(0, 7):
             if self.quad or self.penta:
                 break
