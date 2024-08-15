@@ -120,6 +120,8 @@ class MatrixWalker:
             }
         }
 
+        self.m3x_walker()
+
     def m3x_walker(self):
         for row in range(0, 7):
             if self.quad or self.penta:
@@ -305,7 +307,7 @@ class MatrixWalker:
                         self.matches_triple['match_down'][color_name].append((row, col))
 
                 # triple - 2 left
-                if row != 6 and col not in [0, 1]:
+                if row != 6 and col not in [6, 5]:
                     if (
                             self.matrix[row + 1][col + 1] == color and
                             self.matrix[row + 1][col + 2] == color
@@ -344,7 +346,7 @@ class MatrixWalker:
                         self.matches_penta['match_down'][color_name].append((row, col))
 
                 # penta - 2 down, 2 right
-                if row not in [6, 5, 3] and col not in [6, 5]:
+                if row not in [6, 5, 4] and col not in [6, 5]:
                     if (
                             self.matrix[row + 2][col] == color and
                             self.matrix[row + 3][col] == color and
@@ -443,3 +445,5 @@ class MatrixWalker:
                     ):
                         self.penta = True
                         self.matches_penta['match_up'][color_name].append((row, col))
+
+        return self.matches_triple, self.matches_quad, self.matches_penta
