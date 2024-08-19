@@ -123,6 +123,8 @@ class MatrixWalker:
         self.m3x_walker()
 
     def m3x_walker(self):
+        self.quad = False
+        self.penta = False
         for row in range(0, 7):
             if self.quad or self.penta:
                 break
@@ -131,6 +133,7 @@ class MatrixWalker:
                     break
                 color = self.matrix[row][col]
                 color_name = self.color_map.get(color)
+
 
                 # CHECK MOVE RIGHT
 
@@ -288,7 +291,7 @@ class MatrixWalker:
                         self.penta = True
                         self.matches_penta['match_left'][color_name].append((row, col))
 
-                # Move Down Checks
+                # MOVE DOWN CHECKS
 
                 # triple - 2 down
                 if row not in [6, 5, 4]:
@@ -307,10 +310,10 @@ class MatrixWalker:
                         self.matches_triple['match_down'][color_name].append((row, col))
 
                 # triple - 2 left
-                if row != 6 and col not in [6, 5]:
+                if row != 6 and col not in [0, 1]:
                     if (
-                            self.matrix[row + 1][col + 1] == color and
-                            self.matrix[row + 1][col + 2] == color
+                            self.matrix[row + 1][col - 1] == color and
+                            self.matrix[row + 1][col - 2] == color
                     ):
                         self.matches_triple['match_down'][color_name].append((row, col))
 
@@ -401,7 +404,7 @@ class MatrixWalker:
                             self.matrix[row - 1][col + 2] == color
                     ):
                         self.quad = True
-                        self.matches_triple['match_up'][color_name].append((row, col))
+                        self.matches_quad['match_up'][color_name].append((row, col))
 
                 # quad - 2left, 1 right
                 if row != 0 and col not in [0, 1, 6]:
@@ -411,7 +414,7 @@ class MatrixWalker:
                             self.matrix[row - 1][col + 1] == color
                     ):
                         self.quad = True
-                        self.matches_triple['match_up'][color_name].append((row, col))
+                        self.matches_quad['match_up'][color_name].append((row, col))
 
                 # penta - 2left, 2right
                 if row != 0 and col not in [0, 1, 6, 5]:
