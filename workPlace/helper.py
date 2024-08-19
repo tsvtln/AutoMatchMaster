@@ -469,6 +469,7 @@ class TkinterWorker(Locations):
             m = 'Select at least 1 game mode!'
             self.exceptionPopUp(m)
         else:
+            # Goes into manipulation mode, where decision on further action is made.
             Manipulator(self.selected_power, self.selected_mode)
             self.new_window.destroy()
 

@@ -1,6 +1,8 @@
 import os
 
 from workPlace.base_vars import Locations
+from workPlace.m3x_walker import MatrixWalker
+from workPlace.decide_and_act import DecideAndAct
 
 import numpy as np
 from PIL import Image
@@ -20,6 +22,7 @@ class ColorCrushSolo(Locations):
         self.board_matrix = []
         self.tiles = {}
         self.worker()
+        self.m3x_walker = MatrixWalker
 
     @property
     def powerUpChargeSetter(self):
@@ -36,29 +39,29 @@ class ColorCrushSolo(Locations):
         # line - row x 7
         tile_regions = [
             # line 1
-            (671, 430, 743, 502),       # 1 1
-            (750, 430, 822, 502),       # 1 2
-            (829, 430, 901, 502),       # 1 3
-            (907, 430, 979, 502),       # 1 4
-            (986, 430, 1058, 502),      # 1 5
-            (1064, 430, 1136, 502),     # 1 6
-            (1143, 430, 1215, 502),     # 1 7
+            (671, 430, 743, 502),  # 1 1
+            (750, 430, 822, 502),  # 1 2
+            (829, 430, 901, 502),  # 1 3
+            (907, 430, 979, 502),  # 1 4
+            (986, 430, 1058, 502),  # 1 5
+            (1064, 430, 1136, 502),  # 1 6
+            (1143, 430, 1215, 502),  # 1 7
             # line 2
-            (671, 509, 743, 581),       # 2 1
-            (750, 509, 822, 581),       # 2 2
-            (829, 509, 901, 581),       # 2 3
-            (907, 509, 979, 581),       # 2 4
-            (986, 509, 1058, 581),      # 2 5
-            (1064, 509, 1136, 581),     # 2 6
-            (1143, 509, 1215, 581),     # 2 7
+            (671, 509, 743, 581),  # 2 1
+            (750, 509, 822, 581),  # 2 2
+            (829, 509, 901, 581),  # 2 3
+            (907, 509, 979, 581),  # 2 4
+            (986, 509, 1058, 581),  # 2 5
+            (1064, 509, 1136, 581),  # 2 6
+            (1143, 509, 1215, 581),  # 2 7
             # line 3
-            (671, 588, 743, 660),       # 3 1
-            (750, 588, 822, 660),       # 3 2
-            (829, 588, 901, 660),     # 3 3
-            (907, 588, 979, 660),     # 3 4
-            (986, 588, 1058, 660),     # 3 5
-            (1064, 588, 1136, 660),     # 3 6
-            (1143, 588, 1215, 660),     # 3 7
+            (671, 588, 743, 660),  # 3 1
+            (750, 588, 822, 660),  # 3 2
+            (829, 588, 901, 660),  # 3 3
+            (907, 588, 979, 660),  # 3 4
+            (986, 588, 1058, 660),  # 3 5
+            (1064, 588, 1136, 660),  # 3 6
+            (1143, 588, 1215, 660),  # 3 7
             # line 4
             (671, 666, 743, 738),  # 4 1
             (750, 666, 822, 738),  # 4 2
@@ -152,14 +155,14 @@ class ColorCrushSolo(Locations):
                 self.board_matrix[row][col] = 'Y'
             else:
                 print('M4TR1X 3RR0R')
-        for line in self.board_matrix:
-            print(line)
+        # for line in self.board_matrix:
+        #     print(line)
 
     def worker(self):
         # self.screenshooter.take_screenshot()
         self.tile_scanner()
         self.tile_analyzer()
         self.matrix_maker()
-
-
-
+        self.m3x_walker = MatrixWalker(self.board_matrix)
+        triple_coords, quad_coords, penta_coords, quad_bool, penta_bool = self.m3x_walker
+        DecideAndAct(triple_coords, quad_coords, penta_coords, quad_bool, penta_bool)

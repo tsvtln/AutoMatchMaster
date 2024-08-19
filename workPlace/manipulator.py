@@ -15,7 +15,9 @@ class Manipulator(Locations):
 
     def game_mode_hopper(self):
         type_mode, game_mode_name = self.game_mode[0].split('_')
-        print(type_mode, game_mode_name)
+        # print(type_mode, game_mode_name)
+        # print(self.power_up)
+
 
 
 

@@ -12,7 +12,7 @@ start_time = time.time()
 from workPlace.solo_bin.color_crush_solo import ColorCrushSolo
 
 # Initialize ColorCrushSolo instance
-tileScan = ColorCrushSolo('powerUp')
+# tileScan = ColorCrushSolo('powerUp')
 
 # Perform tile scanning and analysis
 # tileScan.tile_scanner()
@@ -24,18 +24,18 @@ tileScan = ColorCrushSolo('powerUp')
 
 ########################
 ########################
-# from workPlace.helper import TkinterWorker
-#
-# from workPlace.manipulator import Manipulator
-#
-# try:
-#     auto_match = TkinterWorker()
-# except Exception as e:
-#     if isinstance(e, IndexError):
-#         print('You need to select a checkbox!')
-#     else:
-#         print(f"An error occurred: {e}")
-#         input('Press Enter button to continue...')
+from workPlace.helper import TkinterWorker
+
+from workPlace.manipulator import Manipulator
+
+try:
+    auto_match = TkinterWorker()
+except Exception as e:
+    if isinstance(e, IndexError):
+        print('You need to select a checkbox!')
+    else:
+        print(f"An error occurred: {e}")
+        input('Press Enter button to continue...')
 
 
 end_time = time.time()

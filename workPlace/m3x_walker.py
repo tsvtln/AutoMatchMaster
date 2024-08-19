@@ -449,4 +449,4 @@ class MatrixWalker:
                         self.penta = True
                         self.matches_penta['match_up'][color_name].append((row, col))
 
-        return self.matches_triple, self.matches_quad, self.matches_penta
+        return self.matches_triple, self.matches_quad, self.matches_penta, self.quad, self.penta
