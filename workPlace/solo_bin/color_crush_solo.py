@@ -21,8 +21,8 @@ class ColorCrushSolo(Locations):
         self.state_image = Image.open(self.screenshot_state_path)
         self.board_matrix = []
         self.tiles = {}
-        self.worker()
         self.m3x_walker = MatrixWalker
+        self.worker()
 
     @property
     def powerUpChargeSetter(self):
