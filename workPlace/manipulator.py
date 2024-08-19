@@ -19,7 +19,7 @@ class Manipulator(Locations):
 
         if game_mode_name == 'ColorCrush' and type_mode == 'SOLO':
             ColorCrushSolo(self.power_up)
-            
+
         # print(type_mode, game_mode_name)
         # print(self.power_up)
 
