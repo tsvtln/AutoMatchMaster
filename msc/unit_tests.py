@@ -157,7 +157,7 @@ class TestMoves(unittest.TestCase):
         print('PASSED Penta Right Move')
 
     '''
-    Quad will also get a hit before this penta move, as the down check found in any case.
+    Quad will also get a hit before this penta move, as the down check is found in any case.
     ToDo:
         Decide if to keep this check in the m3x_walker.py as it can be considered obsolete with
         the current behaviour (stopping all check when quad/penta is found) or to keep looking for penta, even if
