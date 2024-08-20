@@ -9,7 +9,7 @@ start_time = time.time()
 # runner.take_screenshot()
 # # #
 #
-from workPlace.solo_bin.color_crush_solo import ColorCrushSolo
+# from workPlace.solo_bin.color_crush_solo import ColorCrushSolo
 
 # Initialize ColorCrushSolo instance
 # tileScan = ColorCrushSolo('powerUp')
@@ -26,7 +26,7 @@ from workPlace.solo_bin.color_crush_solo import ColorCrushSolo
 ########################
 from workPlace.helper import TkinterWorker
 
-from workPlace.manipulator import Manipulator
+# from workPlace.manipulator import Manipulator
 
 try:
     auto_match = TkinterWorker()

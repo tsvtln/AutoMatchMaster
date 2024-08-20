@@ -7,7 +7,7 @@ from workPlace.decide_and_act import DecideAndAct
 import numpy as np
 from PIL import Image
 
-from workPlace.helper import TakeScreenshot
+import workPlace.helper as WH
 from skimage.metrics import structural_similarity as ssim
 
 
@@ -17,7 +17,7 @@ class ColorCrushSolo(Locations):
         self.power_up = power_up
         self._power_up_charge = None
         self.turns_left = 6
-        self.screenshooter = TakeScreenshot()
+        self.screenshooter = WH.TakeScreenshot()
         self.state_image = Image.open(self.screenshot_state_path)
         self.board_matrix = []
         self.tiles = {}
