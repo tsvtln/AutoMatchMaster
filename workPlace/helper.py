@@ -1,27 +1,3 @@
-# Game Modes Identifiers:
-#     self.MutationLab_solo = SOLO_MutationLab
-#     self.MultiplierMadnes_solo = SOLO_MultiplierMadnes
-#     self.BombAway_solo = SOLO_BombAway
-#     self.MightyMushrooms_solo = SOLO_MightyMushrooms
-#     self.ColorCrystals_solo = SOLO_ColorCrystals
-#     self.ColorCrush_solo = SOLO_ColorCrush
-#     self.Rainbow_solo = SOLO_Rainbow
-#     self.CrazyColumns_solo = SOLO_CrazyColumns
-#     self.SuperSized_solo = SOLO_SuperSized
-#     self.BlowEmUp_solo = SOLO_BlowEmUp
-#
-#     self.ColorCrush_mr = MatchRumble_ColorCrush
-#     self.DrillingDown_mr = MatchRumble_DrillingDown
-#
-#     self.ColorCrystals_tour = Tournament_ColorCrystals
-#     self.ColorCrush_tour = Tournament_ColorCrush
-#
-#     self.MightyMushrooms_pvp = PVP_MightyMushrooms
-#     self.MovesMulti_pvp = PVP_MovesMulti
-#     self.DrillingDown_pvp = PVP_DrillingDown
-#     self.ColorCrush_pvp = PVP_ColorCrush
-#     self.Classic_pvp = PVP_Classic
-
 import os
 import pyautogui
 import tkinter as tk
@@ -50,6 +26,37 @@ class TakeScreenshot(Locations):
 
 
 class TkinterWorker(Locations):
+    """
+    Goes into manipulation mode, where decision on further action is made after selection is complete.
+    There's 2 windows; first window is for powerups, second window is game selection mode.
+    Based on the selection on power and game mode, the Manipulator() will decide which script to start.
+
+
+    Game Modes Identifiers:
+     self.MutationLab_solo = SOLO_MutationLab
+     self.MultiplierMadnes_solo = SOLO_MultiplierMadnes
+     self.BombAway_solo = SOLO_BombAway
+     self.MightyMushrooms_solo = SOLO_MightyMushrooms
+     self.ColorCrystals_solo = SOLO_ColorCrystals
+     self.ColorCrush_solo = SOLO_ColorCrush
+     self.Rainbow_solo = SOLO_Rainbow
+     self.CrazyColumns_solo = SOLO_CrazyColumns
+     self.SuperSized_solo = SOLO_SuperSized
+     self.BlowEmUp_solo = SOLO_BlowEmUp
+
+     self.ColorCrush_mr = MatchRumble_ColorCrush
+     self.DrillingDown_mr = MatchRumble_DrillingDown
+
+     self.ColorCrystals_tour = Tournament_ColorCrystals
+     self.ColorCrush_tour = Tournament_ColorCrush
+
+     self.MightyMushrooms_pvp = PVP_MightyMushrooms
+     self.MovesMulti_pvp = PVP_MovesMulti
+     self.DrillingDown_pvp = PVP_DrillingDown
+     self.ColorCrush_pvp = PVP_ColorCrush
+     self.Classic_pvp = PVP_Classic
+    """
+
     def __init__(self):
         super().__init__()
         self.selected_power = ''
@@ -469,7 +476,6 @@ class TkinterWorker(Locations):
             m = 'Select at least 1 game mode!'
             self.exceptionPopUp(m)
         else:
-            # Goes into manipulation mode, where decision on further action is made.
             Manipulator(self.selected_power, self.selected_mode)
             self.new_window.destroy()
 
