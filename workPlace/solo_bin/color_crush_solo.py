@@ -3,6 +3,7 @@ import os
 from workPlace.base_vars import Locations
 from workPlace.m3x_walker import MatrixWalker
 from workPlace.decide_and_act import DecideAndAct
+from workPlace.power_ups_actor.power_up_actorator import PowerUpActorator as PUA
 
 import numpy as np
 from PIL import Image
@@ -16,6 +17,7 @@ class ColorCrushSolo(Locations):
         super().__init__()
         self.power_up = power_up
         self._power_up_charge = None
+        self.power_collected = 0
         self.turns_left = 6
         self.screenshooter = WH.TakeScreenshot()
         self.state_image = Image.open(self.screenshot_state_path)
@@ -159,6 +161,8 @@ class ColorCrushSolo(Locations):
         #     print(line)
 
     def worker(self):
+        if self.power_collected == self._power_up_charge:
+            PUA(self.power_up)
         # self.screenshooter.take_screenshot()
         self.tile_scanner()
         self.tile_analyzer()

@@ -21,7 +21,7 @@ from workPlace.power_ups_actor._020_ufo import UFOPWUP
 from workPlace.power_ups_actor._021_cobra import CobraPWUP
 
 
-class PowerUpActivator:
+class PowerUpActorator:
     def __init__(self, pwup):
         self.power_up = pwup
         self.activate()
