@@ -1,6 +1,10 @@
+"""
+- Only activate.
+"""
+
 class LeprichaunPWUP:
     def __init__(self):
-        pass
+        self.runner()
 
     def runner(self):
         pass

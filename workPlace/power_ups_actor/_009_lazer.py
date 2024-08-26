@@ -1,6 +1,10 @@
+"""
+Pick a peace (single click) to explode a +
+"""
+
 class LazerPWUP:
     def __init__(self):
-        pass
+        self.runner()
 
     def runner(self):
         pass

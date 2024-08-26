@@ -1,6 +1,10 @@
+"""
+- Only activate. ~8sec cd
+"""
+
 class TrainPWUP:
     def __init__(self):
-        pass
+        self.runner()
 
     def runner(self):
         pass

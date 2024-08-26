@@ -1,6 +1,10 @@
+"""
+- Only activate ~10sec cd
+"""
+
 class BugPWUP:
     def __init__(self):
-        pass
+        self.runner()
 
     def runner(self):
         pass

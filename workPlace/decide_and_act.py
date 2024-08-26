@@ -9,6 +9,12 @@ class DecideAndAct(Locations):
         self.matches_penta_coords = mp
         self.quad_bool = qb
         self.penta_bool = pb
+        self.worker()
 
     def worker(self):
-        ...
+        if self.penta_bool:
+            pass
+        elif self.quad_bool:
+            pass
+        else:
+            pass

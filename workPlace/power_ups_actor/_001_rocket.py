@@ -1,11 +1,11 @@
 """
-when activated no further interaction from user is required
+- No user interaction after activating.
 """
 
 
 class RocketPWUP:
     def __init__(self):
-        pass
+        self.runner()
 
     def runner(self):
         print('hello')

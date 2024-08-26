@@ -1,6 +1,11 @@
+"""
+- No user interaction after activating.
+"""
+
+
 class Rocket2PWUP:
     def __init__(self):
-        pass
+        self.runner()
 
     def runner(self):
         pass
