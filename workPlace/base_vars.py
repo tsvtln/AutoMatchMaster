@@ -9,6 +9,9 @@ class Locations:
         self.screenshot_state_path = os.path.join(self.workdir, 'collector', 'current_state.png')  # current state
         self.tiles_state_path = os.path.join(self.workdir, 'collector', 'tiles')  # extracted tiles
         self.comp_tiles_path = os.path.join(self.workdir, 'etc', 'comp', 'comp_tiles')  # tiles to compare to
+        self.state_dump_dir = os.path.join(self.workdir, 'etc', 'state_dumps')  # state dump dir
+        self.power_comp_path = os.path.join(self.workdir, 'etc', 'comp', 'comp_power.png')
+
         # tkinter power-ups vars:
         self.power_rocket_pic = os.path.join(self.workdir, 'etc', '001.png')
         self.power_duck_pic = os.path.join(self.workdir, 'etc', '002.png')
@@ -32,8 +35,8 @@ class Locations:
         self.power_ufo_pic = os.path.join(self.workdir, 'etc', '020.png')
         self.power_cobra_pic = os.path.join(self.workdir, 'etc', '021.png')
 
-        # state_dump_dir
-        self.state_dump_dir = os.path.join(self.workdir, 'etc', 'state_dumps')
+        # power state dump
+        self.power_state_dump = os.path.join(self.workdir, 'etc', 'power_state.png')
 
         # comp dir
         self.compare_dir = os.path.join(self.workdir, 'etc', 'comp')

@@ -1,6 +1,8 @@
 """
 - No user interaction after activating.
 """
+import time
+import pyautogui
 
 
 class RocketPWUP:
@@ -8,4 +10,6 @@ class RocketPWUP:
         self.runner()
 
     def runner(self):
-        print('hello')
+        pcx, pcy = (751, 312)
+        pyautogui.leftClick(pcx, pcy)
+        time.sleep(5)

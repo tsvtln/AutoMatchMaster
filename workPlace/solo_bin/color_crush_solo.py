@@ -72,7 +72,14 @@ class ColorCrushSolo(Locations):
                 print('M4TR1X 3RR0R')
 
     def worker(self):
+        check_power_level = WH.power_checker(self.screenshot_state_path, self.power_state_dump)
+        if check_power_level:
+            if self.power_up in ['Rocket', 'Duck', 'Broom']:
+                self.power_collected = 6
+            else:
+                self.power_collected = 7
         if self.power_collected == self._power_up_charge:
+            self.power_collected = 0
             PUA(self.power_up)
         # self.screenshooter.take_screenshot()
         self.tile_scanner()

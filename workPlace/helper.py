@@ -8,11 +8,12 @@ from PIL import Image
 from skimage.metrics import structural_similarity as ssim
 from skimage.transform import resize
 
+import workPlace.base_vars
 from workPlace.base_vars import Locations
 from workPlace.manipulator import Manipulator
 
 
-class HelperFunctions(Locations):
+class HelperFunctions:
 
     @staticmethod
     def take_screenshot(screenshot_path):
@@ -104,10 +105,10 @@ class HelperFunctions(Locations):
                 comp_image = Image.open(os.path.join(comp_tiles_path, filename))
                 comp_image_np = np.array(comp_image)
 
-                print('#####')
-                print(comp_image_np.shape)
-                print(tile_state_image_np.shape)
-                print('#####')
+                # print('#####')
+                # print(comp_image_np.shape)
+                # print(tile_state_image_np.shape)
+                # print('#####')
 
                 if tile_state_image_np.shape != comp_image_np.shape:
                     comp_image_np = resize(comp_image_np, tile_state_image_np.shape)
@@ -127,6 +128,42 @@ class HelperFunctions(Locations):
                     break
         return tiles
 
+    @staticmethod
+    def similarity_index_checker(state_path, comp_path):
+        state_open = Image.open(state_path)
+        comp_open = Image.open(comp_path)
+
+        comp_open = comp_open.resize(state_open.size)
+
+        state_np = np.array(state_open)
+        comp_np = np.array(comp_open)
+
+        smaller_side = min(comp_np.shape[0], comp_np.shape[1],
+                           state_np.shape[0], state_np.shape[1])
+
+        win_size = min(smaller_side, 3)
+
+        similarity_index, _ = ssim(state_np, comp_np, win_size=win_size, full=True)
+        return float(f"{similarity_index:.2f}")
+
+    @staticmethod
+    def power_checker(screenshot_state_path, power_state_dump):
+        power_collected = None
+        power_crop_region = (824, 297, 829, 331)
+        open_state_screenshot = Image.open(screenshot_state_path)
+        crop_power_zone = open_state_screenshot.crop(power_crop_region)
+        crop_power_zone.save(power_state_dump)
+
+        workdir = Locations.workdir()
+        power_comp_path = os.path.join(workdir, 'etc', 'comp', 'comp_power.png')
+        similarity_index = HelperFunctions.similarity_index_checker(power_state_dump, power_comp_path)
+
+        if similarity_index >= 0.8:
+            power_collected = False
+        else:
+            power_collected = True
+
+        return power_collected
 
 class TakeScreenshot(Locations):
     def __init__(self):

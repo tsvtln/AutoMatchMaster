@@ -6,6 +6,8 @@ Random Special Pieces. When your turn Ends, The Special pieces will be Removed.
 It will be Good with Detonator Perk and with the Blow em' Up mode,
 so it can Explode the Special Pieces to make sure that They will not Disappear.
 """
+import time
+import pyautogui
 
 
 class HatPWUP:
@@ -13,4 +15,6 @@ class HatPWUP:
         self.runner()
 
     def runner(self):
-        pass
+        pcx, pcy = (751, 312)
+        pyautogui.leftClick(pcx, pcy)
+        time.sleep(5)

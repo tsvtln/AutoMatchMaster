@@ -11,11 +11,16 @@
     • If there is a Special Piece on the Board, choose the color that the Special Pieces is painted on,
      and then it will blow up.
 """
-
+import time
+import pyautogui
 
 class WandPWUP:
     def __init__(self):
         self.runner()
 
     def runner(self):
-        pass
+        pcx, pcy = (751, 312)
+        pyautogui.leftClick(pcx, pcy)
+        pix, piy = (947, 693)
+        pyautogui.leftClick(pix, piy)
+        time.sleep(8)
