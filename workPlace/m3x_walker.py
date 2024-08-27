@@ -134,7 +134,6 @@ class MatrixWalker:
                 color = self.matrix[row][col]
                 color_name = self.color_map.get(color)
 
-
                 # CHECK MOVE RIGHT
 
                 # 3ple - 2 right
@@ -448,10 +447,6 @@ class MatrixWalker:
                     ):
                         self.penta = True
                         self.matches_penta['match_up'][color_name].append((row, col))
-
-
-        # print('M3x walker')
-        # print(self.matches_triple, self.matches_quad, self.matches_penta, self.quad, self.penta)
 
     def get_result(self):
         return self.matches_triple, self.matches_quad, self.matches_penta, self.quad, self.penta

@@ -5,7 +5,6 @@ from workPlace.m3x_walker import MatrixWalker
 from workPlace.decide_and_act import DecideAndAct
 from workPlace.power_ups_actor.power_up_actorator import PowerUpActorator as PUA
 
-
 import numpy as np
 from PIL import Image
 from typing import Any, Union, Dict, List, Optional
@@ -22,7 +21,7 @@ class ColorCrushSolo(Locations):
         self._power_up_charge: Optional[int] = None
         self.power_collected: int = 0
         self.turns_left: int = 6
-        # self.screenshooter: WH.TakeScreenshot = WH.TakeScreenshot()
+        # self.screenshooter = WH.take_screenshot()
         self.state_image: Image.Image = Image.open(self.screenshot_state_path)
         self.board_matrix: List[List[str]] = []
         self.tiles: Dict[str, Any] = {}
@@ -46,7 +45,6 @@ class ColorCrushSolo(Locations):
 
     def tile_analyzer(self) -> None:
         self.tiles = WH.tile_analyzer(self.tiles_state_path, self.comp_tiles_path, self.tiles)
-
 
     def matrix_maker(self):
         if self.board_matrix:
@@ -72,6 +70,7 @@ class ColorCrushSolo(Locations):
                 print('M4TR1X 3RR0R')
 
     def worker(self):
+        WH.take_screenshot(self.screenshot_state_path)
         check_power_level = WH.power_checker(self.screenshot_state_path, self.power_state_dump)
         if check_power_level:
             if self.power_up in ['Rocket', 'Duck', 'Broom']:
@@ -81,12 +80,11 @@ class ColorCrushSolo(Locations):
         if self.power_collected == self._power_up_charge:
             self.power_collected = 0
             PUA(self.power_up)
-        # self.screenshooter.take_screenshot()
+            self.worker()
         self.tile_scanner()
         self.tile_analyzer()
         self.matrix_maker()
         self.m3x_walker = MatrixWalker(self.board_matrix)
         triple_coords, quad_coords, penta_coords, quad_bool, penta_bool = self.m3x_walker.get_result()
         DecideAndAct(triple_coords, quad_coords, penta_coords, quad_bool, penta_bool)
-
-# ColorCrushSolo('Rocket')
+        

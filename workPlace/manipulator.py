@@ -1,8 +1,3 @@
-import pyautogui
-import time
-
-# from workPlace.helper import HelperFunctions, TkinterWorker, TakeScreenshot
-# from workPlace.solo_bin.color_crush_solo import ColorCrushSolo
 from workPlace.base_vars import Locations
 
 
@@ -20,9 +15,6 @@ class Manipulator(Locations):
         if game_mode_name == 'ColorCrush' and type_mode == 'SOLO':
             import workPlace.solo_bin.color_crush_solo as spdf
             spdf.ColorCrushSolo(self.power_up)
-
-        print(type_mode, game_mode_name)
-        print(self.power_up)
 
 
 

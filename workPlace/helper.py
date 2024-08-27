@@ -105,11 +105,6 @@ class HelperFunctions:
                 comp_image = Image.open(os.path.join(comp_tiles_path, filename))
                 comp_image_np = np.array(comp_image)
 
-                # print('#####')
-                # print(comp_image_np.shape)
-                # print(tile_state_image_np.shape)
-                # print('#####')
-
                 if tile_state_image_np.shape != comp_image_np.shape:
                     comp_image_np = resize(comp_image_np, tile_state_image_np.shape)
 
@@ -164,6 +159,7 @@ class HelperFunctions:
             power_collected = True
 
         return power_collected
+
 
 class TakeScreenshot(Locations):
     def __init__(self):
