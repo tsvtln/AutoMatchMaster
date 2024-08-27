@@ -5,25 +5,28 @@ from workPlace.m3x_walker import MatrixWalker
 from workPlace.decide_and_act import DecideAndAct
 from workPlace.power_ups_actor.power_up_actorator import PowerUpActorator as PUA
 
+
 import numpy as np
 from PIL import Image
+from typing import Any, Union, Dict, List, Optional
 
-import workPlace.helper as WH
+from workPlace.helper import HelperFunctions as WH
+
 from skimage.metrics import structural_similarity as ssim
 
 
 class ColorCrushSolo(Locations):
-    def __init__(self, power_up):
+    def __init__(self, power_up: str):
         super().__init__()
         self.power_up = power_up
-        self._power_up_charge = None
-        self.power_collected = 0
-        self.turns_left = 6
-        self.screenshooter = WH.TakeScreenshot()
-        self.state_image = Image.open(self.screenshot_state_path)
-        self.board_matrix = []
-        self.tiles = {}
-        self.m3x_walker = MatrixWalker
+        self._power_up_charge: Optional[int] = None
+        self.power_collected: int = 0
+        self.turns_left: int = 6
+        # self.screenshooter: WH.TakeScreenshot = WH.TakeScreenshot()
+        self.state_image: Image.Image = Image.open(self.screenshot_state_path)
+        self.board_matrix: List[List[str]] = []
+        self.tiles: Dict[str, Any] = {}
+        self.m3x_walker: MatrixWalker = MatrixWalker
         self.worker()
 
     @property
@@ -39,10 +42,10 @@ class ColorCrushSolo(Locations):
         self._power_up_charge = value
 
     def tile_scanner(self):
-        WH.HelperFunctions.tile_scanner(self.state_image, self.tiles_state_path)
+        WH.tile_scanner(self.state_image, self.tiles_state_path)
 
-    def tile_analyzer(self):
-        self.tiles = WH.HelperFunctions.tile_analyzer(self.tiles_state_path, self.comp_tiles_path, self.tiles)
+    def tile_analyzer(self) -> None:
+        self.tiles = WH.tile_analyzer(self.tiles_state_path, self.comp_tiles_path, self.tiles)
 
 
     def matrix_maker(self):
@@ -76,5 +79,7 @@ class ColorCrushSolo(Locations):
         self.tile_analyzer()
         self.matrix_maker()
         self.m3x_walker = MatrixWalker(self.board_matrix)
-        triple_coords, quad_coords, penta_coords, quad_bool, penta_bool = self.m3x_walker
+        triple_coords, quad_coords, penta_coords, quad_bool, penta_bool = self.m3x_walker.get_result()
         DecideAndAct(triple_coords, quad_coords, penta_coords, quad_bool, penta_bool)
+
+# ColorCrushSolo('Rocket')

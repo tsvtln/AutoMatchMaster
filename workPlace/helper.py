@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import *
 from PIL import Image
 from skimage.metrics import structural_similarity as ssim
+from skimage.transform import resize
 
 from workPlace.base_vars import Locations
 from workPlace.manipulator import Manipulator
@@ -95,13 +96,21 @@ class HelperFunctions(Locations):
             tiles.clear()
             tiles = {f'tile_{r}_{c}': '' for r in range(1, 8) for c in range(1, 8)}
         for tile_num in range(1, 50):
-            tile_state_image = Image.open(os.path.join(tiles_state_path, f'tile_{tile_num}.png'))
+            tile_state_image = Image.open(os.path.join(tiles_state_path, f'tile_{tile_num}.png')).convert('RGB')
             tile_state_image_np = np.array(tile_state_image)
 
             # find tile color
             for filename in os.listdir(comp_tiles_path):
                 comp_image = Image.open(os.path.join(comp_tiles_path, filename))
                 comp_image_np = np.array(comp_image)
+
+                print('#####')
+                print(comp_image_np.shape)
+                print(tile_state_image_np.shape)
+                print('#####')
+
+                if tile_state_image_np.shape != comp_image_np.shape:
+                    comp_image_np = resize(comp_image_np, tile_state_image_np.shape)
 
                 # calculate SSI
                 smaller_side = min(tile_state_image_np.shape[0], tile_state_image_np.shape[1],
