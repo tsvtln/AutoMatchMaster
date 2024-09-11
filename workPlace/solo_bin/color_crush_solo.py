@@ -18,7 +18,7 @@ class ColorCrushSolo(Locations):
     def __init__(self, power_up: str):
         super().__init__()
         self.power_up = power_up
-        self._power_up_charge: Optional[int] = None
+        self._power_up_charge: Optional[int] = 0
         self.power_collected: int = 0
         self.turns_left: int = 6
         # self.screenshooter = WH.take_screenshot()
@@ -29,16 +29,16 @@ class ColorCrushSolo(Locations):
         self.worker()
 
     @property
-    def powerUpChargeSetter(self):
+    def power_up_charge(self):
         return self._power_up_charge
 
-    @powerUpChargeSetter.setter
-    def powerUpChargeSetter(self, value):
+    @power_up_charge.setter
+    def power_up_charge(self, value):
         if self.power_up in ['Rocket', 'Duck', 'Broom']:
-            value = 6
+            self._power_up_charge = 6
         else:
-            value = 7
-        self._power_up_charge = value
+            self._power_up_charge = 7
+        print(f"Power-up charge set to {self._power_up_charge}")
 
     def tile_scanner(self):
         WH.tile_scanner(self.state_image, self.tiles_state_path)
@@ -70,8 +70,9 @@ class ColorCrushSolo(Locations):
                 print('M4TR1X 3RR0R')
 
     def worker(self):
-        WH.take_screenshot(self.screenshot_state_path)
+        # WH.take_screenshot(self.screenshot_state_path)
         check_power_level = WH.power_checker(self.screenshot_state_path, self.power_state_dump)
+        print(f'Value of CPL: {check_power_level}')
         if check_power_level:
             if self.power_up in ['Rocket', 'Duck', 'Broom']:
                 self.power_collected = 6
@@ -79,6 +80,7 @@ class ColorCrushSolo(Locations):
                 self.power_collected = 7
         if self.power_collected == self._power_up_charge:
             self.power_collected = 0
+            print('POWER UP#######################')
             PUA(self.power_up)
             self.worker()
         self.tile_scanner()
@@ -87,4 +89,6 @@ class ColorCrushSolo(Locations):
         self.m3x_walker = MatrixWalker(self.board_matrix)
         triple_coords, quad_coords, penta_coords, quad_bool, penta_bool = self.m3x_walker.get_result()
         DecideAndAct(triple_coords, quad_coords, penta_coords, quad_bool, penta_bool)
-        
+        self.turns_left -= 1
+        if self.turns_left > 0:
+            self.worker()

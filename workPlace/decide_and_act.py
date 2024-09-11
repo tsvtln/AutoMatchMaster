@@ -18,3 +18,9 @@ class DecideAndAct(Locations):
             pass
         else:
             pass
+        # print(f'Triple coords: {self.matches_triple_coords}\n'
+        #       f'Quad coords: {self.matches_quad_coords}\n'
+        #       f'Penta coords: {self.matches_penta_coords}\n'
+        #       f'Quad bool: {self.quad_bool}\n'
+        #       f'Penta bool: {self.penta_bool}')
+
